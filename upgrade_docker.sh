@@ -10,12 +10,12 @@ export NO_PROXY="localhost,127.0.0.1,*.local,169.254.0.0/16,172.16.0.0/12"
 # 3. 给 sudo apt-get 配置临时代理参数 --> aptp
 aptp() {
   if [ -n "${HTTP_PROXY:-}" ] && [ -n "${HTTPS_PROXY:-}" ]; then
-    sudo apt-get \
+    sudo apt \
       -o Acquire::http::Proxy="$HTTP_PROXY" \
       -o Acquire::https::Proxy="$HTTPS_PROXY" \
       "$@"
   else
-    sudo apt-get "$@"
+    sudo apt "$@"
   fi
 }
 
